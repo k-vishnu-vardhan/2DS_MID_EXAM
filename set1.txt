@@ -1,0 +1,389 @@
+
+1)
+Question: Complete the factorial program using a Thread
+        Goal:
+        Read an integer n.
+
+        For 0 ≤ n ≤ 20, compute n! on a separate thread and print n + "! = " + result.
+        If input isn’t an integer, print: Please enter a valid integer.
+        If n < 0 or n > 20, print: Factorial is not defined for negative numbers and Long supports max 20!.
+
+        Instructions:
+        Replace only the TODO blanks. Do not change anything else.
+
+
+import java.util.Scanner;
+
+class compute_factorial extends Thread {
+    // class variable
+    private final int n;
+    private long result = 1L; // long now
+
+    // constructor
+    compute_factorial(int n) {
+        // TODO 1: assign the constructor parameter to the field
+        __________ = __________;
+    }
+
+    long factorial(int n) {
+        long fact_result = 1L;
+        for (int i = 1; i <= n; i++) {
+            // TODO 2: multiply fact_result by i
+            fact_result = ____________________;
+        }
+        return fact_result;
+    }
+
+    @Override
+    public void run() {
+        // TODO 3: compute factorial for n and store in result
+        ____________________________;
+    }
+
+    long getResult() {
+        return result;
+    }
+}
+
+
+// ...
+public class factorial {
+    public static void main(String[] args) throws InterruptedException {
+        try (Scanner sc = new Scanner(System.in)) {
+            System.out.print("Enter number to compute factorial : ");
+            if (!sc.hasNextInt()) {
+                System.err.println("Please enter a valid integer.");
+                return;
+            }
+            int n = sc.nextInt();
+            if (n < 0 || n > 20) {
+                System.err.println("Factorial is not defined for negative numbers  and Long supports max 20!.");
+                return;
+            }
+
+            // TODO 4: create the thread object with n
+            compute_factorial t = ________________________;
+
+            // TODO 5: start the thread
+            __________________;
+
+            // TODO 6: wait for the thread to finish
+            ________________;
+
+            // TODO 7: print "<n>! = <result>"
+            System.out.println(____________________________________);
+        }
+    }
+}
+
+
+5 Test Cases (transcript style)
+
+Test Case 1 — Normal (small n)
+User Input (transcript):
+Enter number to compute factorial : 5
+
+Expected Output (program-only):
+5! = 120
+
+User Output: 
+Result: PASS / FAIL
+
+
+
+Test Case 2 — Zero
+User Input (transcript):
+Enter number to compute factorial : 0
+
+Expected Output (program-only):
+0! = 1
+
+User Output: 
+Result: PASS / FAIL
+
+
+
+Test Case 3 — Maximum allowed (20)
+User Input (transcript):
+Enter number to compute factorial : 20
+
+Expected Output (program-only):
+20! = 2432902008176640000
+
+User Output: 
+Result: PASS / FAIL
+
+
+
+Test Case 4 — Invalid (non-integer)
+User Input (transcript):
+Enter number to compute factorial : abc
+
+Expected Output (program-only):
+Please enter a valid integer.
+
+User Output: 
+Result: PASS / FAIL
+
+
+
+Test Case 5 — Out of range ( > 20 )
+User Input (transcript):
+Enter number to compute factorial : 21
+
+Expected Output (program-only):
+Factorial is not defined for negative numbers  and Long supports max 20!.
+User Output: 
+Result: PASS / FAIL
+
+
+
+2) 
+
+Question: Complete the String Methods Demo
+Goal:
+Read two strings s1 and s2.
+
+Demonstrate common String methods on s1 and comparisons with s2.
+
+Fill in ONLY the TODO blanks.
+
+
+import java.util.Scanner;
+
+public class string_methods {
+
+    String s1;
+    String s2;
+
+    public string_methods(String s1, String s2) {
+        // TODO 1: assign constructor parameters to fields
+        __________ = __________;
+        __________ = __________;
+    }
+
+    static void string_methods_play(String s1, String s2) {
+        // Case conversion
+        System.out.println("toUpperCase:");
+        // TODO 2: print s1 in upper case
+        System.out.println("s1.toUpperCase() = " + __________);
+
+        System.out.println("\ntoLowerCase:");
+        // TODO 3: print s1 in lower case
+        System.out.println("s1.toLowerCase() = " + __________);
+
+        // Case-sensitive equality
+        System.out.println("\nequals (case-sensitive):");
+        // TODO 4: use equals
+        System.out.println("s1.equals(s2) = " + __________);
+
+        // Case-insensitive equality
+        System.out.println("\nequalsIgnoreCase (case-insensitive):");
+        // TODO 5: use equalsIgnoreCase
+        System.out.println("s1.equalsIgnoreCase(s2) = " + __________);
+
+        // length()
+        System.out.println("\n--- length() ---");
+        // TODO 6: print s1 length
+        System.out.println("s1.length() = " + __________);
+
+        // isEmpty()
+        System.out.println("\n--- isEmpty() ---");
+        // TODO 7: print s1 isEmpty()
+        System.out.println("s1.isEmpty() = " + __________);
+
+        // charAt()
+        System.out.println("\n--- charAt() ---");
+        // TODO 8: if s1 not empty, print first char else print message
+        if (__________) {
+            System.out.println("s1.charAt(0) = " + __________);
+        } else {
+            System.out.println("s1 is empty; charAt(0) not available.");
+        }
+
+        // concat()
+        System.out.println("\n--- concat() ---");
+        // TODO 9: print s1.concat(s2)
+        System.out.println("s1.concat(s2) = " + __________);
+    }
+
+    public static void main(String[] args) {
+        try (Scanner sc = new Scanner(System.in)) {
+            // TODO 10: read s1 and s2 from input and call string_methods_play
+            System.out.print("Enter s1: ");
+            String s1 = __________;
+
+            System.out.print("Enter s2: ");
+            String s2 = __________;
+
+            __________(s1, s2);
+        }
+    }
+}
+
+Test Case 1 — Same letters, different case
+User Input (transcript):
+Enter s1: Hello
+Enter s2: hello
+
+Expected Output (program-only):
+toUpperCase:
+s1.toUpperCase() = HELLO
+
+toLowerCase:
+s1.toLowerCase() = hello
+
+equals (case-sensitive):
+s1.equals(s2) = false
+
+equalsIgnoreCase (case-insensitive):
+s1.equalsIgnoreCase(s2) = true
+
+--- length() ---
+s1.length() = 5
+
+--- isEmpty() ---
+s1.isEmpty() = false
+
+--- charAt() ---
+s1.charAt(0) = H
+
+--- concat() ---
+s1.concat(s2) = Hellohello
+
+User Output:
+Result: PASS / FAIL
+
+Test Case 2 — Empty s1
+User Input (transcript):
+Enter s1: 
+Enter s2: world
+
+(user presses Enter for s1; s1 is empty)  Expected Output (program-only):
+toUpperCase:
+s1.toUpperCase() = 
+
+toLowerCase:
+s1.toLowerCase() = 
+
+equals (case-sensitive):
+s1.equals(s2) = false
+
+equalsIgnoreCase (case-insensitive):
+s1.equalsIgnoreCase(s2) = false
+
+--- length() ---
+s1.length() = 0
+
+--- isEmpty() ---
+s1.isEmpty() = true
+
+--- charAt() ---
+s1 is empty; charAt(0) not available.
+
+--- concat() ---
+s1.concat(s2) = world
+
+User Output:
+Result: PASS / FAIL
+
+Test Case 3 — Single character
+User Input (transcript):
+Enter s1: A
+Enter s2: B
+
+Expected Output (program-only):
+toUpperCase:
+s1.toUpperCase() = A
+
+toLowerCase:
+s1.toLowerCase() = a
+
+equals (case-sensitive):
+s1.equals(s2) = false
+
+equalsIgnoreCase (case-insensitive):
+s1.equalsIgnoreCase(s2) = false
+
+--- length() ---
+s1.length() = 1
+
+--- isEmpty() ---
+s1.isEmpty() = false
+
+--- charAt() ---
+s1.charAt(0) = A
+
+--- concat() ---
+s1.concat(s2) = AB
+
+User Output:
+Result: PASS / FAIL
+
+Test Case 4 — Spaces included
+User Input (transcript):
+Enter s1: Java
+Enter s2:  Rocks
+
+(note: s2 starts with a space)  Expected Output (program-only):
+toUpperCase:
+s1.toUpperCase() = JAVA
+
+toLowerCase:
+s1.toLowerCase() = java
+
+equals (case-sensitive):
+s1.equals(s2) = false
+
+equalsIgnoreCase (case-insensitive):
+s1.equalsIgnoreCase(s2) = false
+
+--- length() ---
+s1.length() = 4
+
+--- isEmpty() ---
+s1.isEmpty() = false
+
+--- charAt() ---
+s1.charAt(0) = J
+
+--- concat() ---
+s1.concat(s2) = Java Rocks
+
+User Output:
+Result: PASS / FAIL
+
+Test Case 5 — Unicode letters
+User Input (transcript):
+Enter s1: Café
+Enter s2: café
+
+Expected Output (program-only):
+toUpperCase:
+s1.toUpperCase() = CAFÉ
+
+toLowerCase:
+s1.toLowerCase() = café
+
+equals (case-sensitive):
+s1.equals(s2) = false
+
+equalsIgnoreCase (case-insensitive):
+s1.equalsIgnoreCase(s2) = true
+
+--- length() ---
+s1.length() = 4
+
+--- isEmpty() ---
+s1.isEmpty() = false
+
+--- charAt() ---
+s1.charAt(0) = C
+
+--- concat() ---
+s1.concat(s2) = Cafécafé
+
+User Output:
+Result: PASS / FAIL
+—
+

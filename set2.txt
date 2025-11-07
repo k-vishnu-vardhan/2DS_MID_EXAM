@@ -1,0 +1,228 @@
+1) 
+
+import java.util.Scanner;
+
+class compute_palindrome_string implements Runnable {
+    private final String value;
+    private boolean isPalindrome;
+
+    compute_palindrome_string(String value) {
+        // TODO 1: assign constructor parameter to the field
+        __________ = __________;
+    }
+
+    // Case-sensitive palindrome check (no normalization)
+    private boolean isPalindrome(String a) {
+
+        int len = /* TODO 2: length of a */ __________ ;
+
+        if (len == 0) {
+            System.out.println("Empty String");
+            return false;
+        }
+        if (len == 1) {
+            System.out.println("Its a palindrome");
+            return true;
+        }
+
+        for (int i = 0; i < /* TODO 3: loop half length */ __________ ; i++) {
+            // TODO 4: compare symmetric characters; if not equal -> print and return false
+            if ( /* __________ */ a.charAt(i) != a.charAt( /* __________ */ len - 1 - i) ) {
+                System.out.println("Not a palindrome");
+                return false;
+            }
+        }
+        System.out.println("Its a palindrome");
+        return true;
+    }
+
+    @Override
+    public void run() {
+        // TODO 5: call checker and assign to isPalindrome
+        _______________________________;
+    }
+
+    boolean getResult() {
+        return isPalindrome;
+    }
+}
+
+public class palindrome {
+    public static void main(String[] args) throws InterruptedException {
+        try (Scanner sc = new Scanner(System.in)) {
+            System.out.print("Enter a string to check palindrome: ");
+            String line = sc.nextLine();
+
+            // TODO 6: create the task
+            compute_palindrome_string task = __________________________;
+
+            // TODO 7: wrap Runnable into a Thread
+            Thread t = __________________________;
+
+            // TODO 8: start the thread
+            __________________;
+
+            // TODO 9: wait for completion
+            ________________;
+
+            boolean result = task.getResult();
+            // TODO 10: print the final verdict exactly as specified
+            System.out.println("\"" + line + "\"" + ( result ? " is" : " is not") + " a palindrome.");
+        }
+    }
+}
+
+Test Case 1 — Palindrome (odd length)
+User Input (transcript):
+Enter a string to check palindrome: level
+
+Expected Output (program-only):
+Its a palindrome
+"level" is a palindrome.
+
+User Output:
+Result: PASS / FAIL
+
+Test Case 2 — Not a palindrome
+User Input (transcript):
+Enter a string to check palindrome: hello
+
+Expected Output (program-only):
+Not a palindrome
+"hello" is not a palindrome.
+
+User Output:
+Result: PASS / FAIL
+
+Test Case 3 — Empty string
+User Input (transcript):
+Enter a string to check palindrome: 
+
+(user just presses Enter)  Expected Output (program-only):
+Empty String
+"" is not a palindrome.
+
+User Output:
+Result: PASS / FAIL
+
+Test Case 4 — Palindrome (even length)
+User Input (transcript):
+Enter a string to check palindrome: abba
+
+Expected Output (program-only):
+Its a palindrome
+"abba" is a palindrome.
+
+User Output:
+Result: PASS / FAIL
+
+Test Case 5 — Case-sensitive check (fails on mixed case)
+User Input (transcript):
+Enter a string to check palindrome: Madam
+
+Expected Output (program-only):
+Not a palindrome
+"Madam" is not a palindrome.
+
+User Output:
+Result: PASS / FAIL
+
+2)
+
+Question: Complete the Try–Catch–Finally program
+Goal:
+Read two integers a and b 
+Print Result: a/b 
+If b == 0, print exactly: Error: Cannot divide by zero. 
+If the input is not an integer, print exactly: Error: Invalid input. 
+Always close the Scanner, then print: Program continues... 
+Instructions:  Only replace the TODO parts. Do not change anything else.
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class TryCatchFinally {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        try {
+            System.out.print("Enter a: ");
+            int a = sc.nextInt();
+
+            System.out.print("Enter b: ");
+            int b = sc.nextInt();
+
+            int c = a / b;  // may throw ArithmeticException if b == 0
+            System.out.println("Result: " + c);
+
+        } catch (/* TODO 1: exception type for divide-by-zero */ __________ ) {
+            // TODO 2: print the exact message for divide-by-zero
+            System.out.println( _______________________________ );
+
+        } catch (/* TODO 3: exception type for non-integer input */ __________ ) {
+            // TODO 4: print the exact message for invalid input
+            System.out.println( _______________________________ );
+
+        } finally {
+            sc.close();
+        }
+
+        System.out.println("Program continues...");
+    }
+}
+
+
+
+Test Case 1 — Normal division
+User Input (transcript):
+Enter a: 10
+Enter b: 2
+
+Expected Output (program-only):
+Result: 5
+Program continues...
+
+User Output:  (leave blank for students to paste)
+Result: PASS / FAIL
+
+Test Case 2 — Division by zero
+User Input (transcript):
+Enter a: 10
+Enter b: 0
+
+Expected Output (program-only):
+Error: Cannot divide by zero.
+Program continues...
+
+User Output:  Result: PASS / FAIL
+
+Test Case 3 — Non-integer for a
+User Input (transcript):
+Enter a: abc
+
+Expected Output (program-only):
+Error: Invalid input.
+Program continues...
+
+User Output:  Result: PASS / FAIL
+
+Test Case 4 — Non-integer for b
+User Input (transcript):
+Enter a: 15
+Enter b: xyz
+
+Expected Output (program-only):
+Error: Invalid input.
+Program continues...
+
+User Output:  Result: PASS / FAIL
+
+Test Case 5 — Negative result
+User Input (transcript):
+Enter a: -9
+Enter b: 3
+
+Expected Output (program-only):
+Result: -3
+Program continues...
+
+User Output:  Result: PASS / FAIL
