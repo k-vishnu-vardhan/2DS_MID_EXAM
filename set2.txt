@@ -1,5 +1,4 @@
 1) 
-
 import java.util.Scanner;
 
 class compute_palindrome_string implements Runnable {
@@ -8,13 +7,13 @@ class compute_palindrome_string implements Runnable {
 
     compute_palindrome_string(String value) {
         // TODO 1: assign constructor parameter to the field
-        __________ = __________;
+        this.value = value;
     }
 
     // Case-sensitive palindrome check (no normalization)
     private boolean isPalindrome(String a) {
 
-        int len = /* TODO 2: length of a */ __________ ;
+        int len = /* TODO 2: length of a */ a.length();
 
         if (len == 0) {
             System.out.println("Empty String");
@@ -25,9 +24,9 @@ class compute_palindrome_string implements Runnable {
             return true;
         }
 
-        for (int i = 0; i < /* TODO 3: loop half length */ __________ ; i++) {
+        for (int i = 0; i < /* TODO 3: loop half length */ len / 2; i++) {
             // TODO 4: compare symmetric characters; if not equal -> print and return false
-            if ( /* __________ */ a.charAt(i) != a.charAt( /* __________ */ len - 1 - i) ) {
+            if (a.charAt(i) != a.charAt(len - 1 - i)) {
                 System.out.println("Not a palindrome");
                 return false;
             }
@@ -39,7 +38,7 @@ class compute_palindrome_string implements Runnable {
     @Override
     public void run() {
         // TODO 5: call checker and assign to isPalindrome
-        _______________________________;
+        isPalindrome = isPalindrome(value);
     }
 
     boolean getResult() {
@@ -54,23 +53,24 @@ public class palindrome {
             String line = sc.nextLine();
 
             // TODO 6: create the task
-            compute_palindrome_string task = __________________________;
+            compute_palindrome_string task = new compute_palindrome_string(line);
 
             // TODO 7: wrap Runnable into a Thread
-            Thread t = __________________________;
+            Thread t = new Thread(task);
 
             // TODO 8: start the thread
-            __________________;
+            t.start();
 
             // TODO 9: wait for completion
-            ________________;
+            t.join();
 
             boolean result = task.getResult();
             // TODO 10: print the final verdict exactly as specified
-            System.out.println("\"" + line + "\"" + ( result ? " is" : " is not") + " a palindrome.");
+            System.out.println("\"" + line + "\"" + (result ? " is" : " is not") + " a palindrome.");
         }
     }
 }
+
 
 Test Case 1 — Palindrome (odd length)
 User Input (transcript):
